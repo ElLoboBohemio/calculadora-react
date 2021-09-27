@@ -1,38 +1,106 @@
-.App {
-  text-align: center;
+:root{
+  --input: #005531;
+  --texto: #C0D0C9;
+  --btn-regular: #319168;
+  --btn-operadores: #0D774A;
+  --btn-modificadores: #D36F47;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*{
+  color: var(--texto);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  background-color: var(--input);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+button {
+  font-size: 2rem;
+  border: none;
+  cursor: pointer;
+}
+
+.modifiers button {
+  background-color: var(--btn-modificadores);
+}
+
+.operations button {
+  background-color: var(--btn-operadores);
+}
+
+.digits button {
+  background-color: var(--btn-regular);
+}
+
+/* All things Grid, Flexbox, Box Alignment */
+
+.wrapper {
+  max-width: 420px;
+  height: 100vh;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.wrapper,
+.subgrid {
+  display: grid;
+}
+
+.wrapper {
+  grid-template-areas:
+    "total total total total"
+    "modif modif modif oper"
+    "digit digit digit oper"
+    "digit digit digit oper"
+    "digit digit digit oper"
+    "digit digit digit oper";
+  grid-auto-columns: 1fr;
+}
+
+.show-input {
+  grid-area: total;
+}
+
+.modifiers {
+  grid-area: modif;
+}
+
+.operations {
+  grid-area: oper;
+}
+
+.digits {
+  grid-area: digit;
+}
+
+.show-input {
   display: flex;
-  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding-left: 10px;
+  font-size: 2rem;
+  background-color: var(--input);
+  border: 3px solid var(--texto);
+
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
 
-.App-link {
-  color: #61dafb;
+.modifiers {
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.digits {
+  display: flex;
+  flex-wrap: wrap;
+}
+.digits button {
+  flex: 1 0 26%;
 }
